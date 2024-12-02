@@ -1,29 +1,113 @@
 import random
+
+HANGMANPICS = [
+    """
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========""",
+]
+
 common_nouns = [ "время","человек","год","дело","день","рука","раз","город","слово","место","лицо","друг","глаз",]
 
-answer = list(random.choice(common_nouns))
+def main():
+    answer = list(random.choice(common_nouns))
 
-print ("" .join(answer))
+    print ("" .join(answer))
 
-while True:
-    print("В вашем слове " + str(len(answer)) + " букв")
+    attempts = 7
+
     playfield = []
     for i in answer:
         playfield.append("_")
-    guess = input(f"Введите одну букву: ")
+
     print(f'слово: {"".join(playfield)}')
 
-    if len(guess) != 1:
-        print("Неверное количество букв в слове!")
-        continue
+    while True:
 
-    for i in range(len(answer)):
-        if guess == answer[i]:
-            playfield[i] = ("position", guess)
-        elif guess in answer:
-            playfield[i] = ("letter", guess)
-        print(letter)
+        print("В вашем слове " + str(len(answer)) + " букв")
+        guess = input(f"Введите одну букву: ")
 
+        if len(guess) != 1:
+            print("Неверное количество букв в слове!")
+            continue
+
+        for i in range(len(answer)):
+            if guess == answer[i]:
+                playfield[i] = guess
+
+        if guess not in answer: 
+            attempts -= 1
+            print(f"Неправильно попыток осталось {attempts}")
+            if attempts == 0:
+                break    
+            elif answer != playfield:
+                print(HANGMANPICS[len(HANGMANPICS) - attempts])
+        elif answer == playfield:
+            print("Вы выиграли")
+            break    
+
+
+        
+
+        print(f'слово: {"".join(playfield)}')
+
+while True:
+    main()
+    user_input = input("Хотите запустить код снова? (да/нет): ")
+    if user_input.lower() != 'да':
+        break
 
 # """
 # Практическая работа: Создание игры «Виселица»
@@ -73,64 +157,64 @@ while True:
 #         Подсказка: Используйте цикл while и запрос на ввод "Хотите сыграть снова? (да/нет)".
 # """
 
-# HANGMANPICS = [
-#     """
-#   +---+
-#   |   |
-#       |
-#       |
-#       |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#       |
-#       |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#   |   |
-#       |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#  /|   |
-#       |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#       |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#  /    |
-#       |
-# =========""",
-#     """
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#  / \\  |
-#       |
-# =========""",
-# ]
+HANGMANPICS = [
+    """
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========""",
+    """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========""",
+]
 
 # COMMON_NOUNS = [
     # "время",
